@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Encuesta | Azul</title>
+<style>
+:root{--blue:#2563eb;--blue2:#1d4ed8;--pale:#eff6ff;--ink:#172033;--muted:#64748b;--line:#dbe3ef;--bg:#f3f6fb}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:var(--ink)}
+.top{height:9px;background:linear-gradient(90deg,#1d4ed8,#60a5fa)}
+.wrap{max-width:780px;margin:34px auto;padding:0 16px 48px}
+.hero,.card{background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:0 8px 28px #1e3a8a0a}
+.hero{overflow:hidden;margin-bottom:16px}.hero-band{height:12px;background:var(--blue)}.hero-inner{padding:28px 30px 24px}
+.kicker{font-size:12px;text-transform:uppercase;letter-spacing:.12em;font-weight:800;color:var(--blue)}
+h1{font-size:clamp(26px,5vw,36px);line-height:1.15;margin:10px 0;color:#14213d}
+.desc{color:var(--muted);line-height:1.6;margin:0}
+.meta{display:flex;gap:12px;flex-wrap:wrap;color:var(--muted);font-size:13px;margin-top:18px}
+.card{padding:24px 26px;margin-bottom:14px}.field-title{font-weight:750;font-size:16px;margin:0 0 7px}
+.hint{font-size:13px;color:var(--muted);margin:0 0 15px;line-height:1.45}
+.required{color:#dc2626}.input,textarea,select{width:100%;font:inherit;border:1px solid #cbd5e1;border-radius:9px;padding:12px 13px;background:#fff;color:var(--ink);outline:none}
+.input:focus,textarea:focus,select:focus{border-color:var(--blue);box-shadow:0 0 0 3px #2563eb1c}
+textarea{min-height:110px;resize:vertical}.choices{display:grid;gap:12px}.choice{display:flex;gap:10px;align-items:flex-start;line-height:1.45;cursor:pointer}.choice input{accent-color:var(--blue);margin-top:4px;width:17px;height:17px;flex-shrink:0}
+.actions{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-top:20px}
+button{border:0;background:var(--blue);color:white;font:inherit;font-weight:750;border-radius:9px;padding:13px 21px;cursor:pointer;box-shadow:0 5px 12px #2563eb26}
+button:hover{background:var(--blue2)}button:disabled{opacity:.65;cursor:wait}
+.small{font-size:12px;color:var(--muted);line-height:1.5}.status{padding:13px 15px;border-radius:10px;margin-top:16px;display:none;line-height:1.5}.status.ok{display:block;background:#ecfdf5;color:#065f46;border:1px solid #a7f3d0}.status.err{display:block;background:#fff1f2;color:#9f1239;border:1px solid #fecdd3}
+.footer{text-align:center;color:var(--muted);font-size:12px;margin-top:22px}
+@media(max-width:540px){.wrap{margin:18px auto}.hero-inner{padding:23px 20px}.card{padding:21px 19px}}
+</style>
+</head>
+<body>
+<div class="top"></div>
+<main class="wrap">
+  <section class="hero">
+    <div class="hero-band"></div>
+    <div class="hero-inner">
+      <div class="kicker">Formulario en línea</div>
+      <h1 id="formTitle">Encuesta general: entretenimiento y diferencias culturales</h1>
+      <p class="desc" id="formDescription">Gracias por participar. Completa las preguntas y envía tus respuestas.</p>
+      <div class="meta"><span>● Las preguntas con <b class="required">*</b> son obligatorias</span><span>● Tus respuestas se guardarán al enviarlas</span></div>
+    </div>
+  </section>
+  <form id="surveyForm" novalidate>
+    <section class="card">
+      <p class="field-title">1. ¿Cuál es tu nombre? <span class="required">*</span></p>
+      <p class="hint">Escribe tu nombre o un alias, según el propósito de la encuesta.</p>
+      <input class="input" name="nombre" autocomplete="name" maxlength="100" required placeholder="Tu respuesta">
+    </section>
+    <section class="card">
+      <p class="field-title">2. ¿Cuál es tu rango de edad?</p>
+      <p class="hint">Selecciona una opción.</p>
+      <select name="edad"><option value="">Selecciona una opción</option><option>Menos de 18</option><option>18–24</option><option>25–34</option><option>35–44</option><option>45 o más</option><option>Prefiero no decirlo</option></select>
+    </section>
+    <section class="card">
+      <p class="field-title">3. ¿Cuál es la actividad a la que más tiempo dedicas en tu espacio libre? <span class="required">*</span></p>
+      <p class="hint">Selecciona una sola opción.</p>
+      <div class="choices">
+        <label class="choice"><input type="radio" name="actividad" value="Redes sociales y videos cortos (TikTok, Reels, Shorts)" required><span>Redes sociales y videos cortos (TikTok, Reels, Shorts)</span></label>
+        <label class="choice"><input type="radio" name="actividad" value="Videojuegos (PC, consola o celular)"><span>Videojuegos (PC, consola o celular)</span></label>
+        <label class="choice"><input type="radio" name="actividad" value="Series, películas o anime en plataformas de streaming"><span>Series, películas o anime en plataformas de streaming</span></label>
+        <label class="choice"><input type="radio" name="actividad" value="Escuchar música o podcasts"><span>Escuchar música o podcasts</span></label>
+        <label class="choice"><input type="radio" name="actividad" value="Salidas sociales / Actividades al aire libre"><span>Salidas sociales / Actividades al aire libre</span></label>
+      </div>
+    </section>
+    <section class="card">
+      <p class="field-title">4. En promedio, ¿cuántas horas al día dedicas al entretenimiento digital fuera de tus horas de estudio o trabajo? <span class="required">*</span></p>
+      <p class="hint">Selecciona una sola opción.</p>
+      <div class="choices">
+        <label class="choice"><input type="radio" name="horas_digital" value="Menos de 1 hora" required><span>Menos de 1 hora</span></label>
+        <label class="choice"><input type="radio" name="horas_digital" value="Entre 1 y 3 horas"><span>Entre 1 y 3 horas</span></label>
+        <label class="choice"><input type="radio" name="horas_digital" value="Entre 3 y 5 horas"><span>Entre 3 y 5 horas</span></label>
+        <label class="choice"><input type="radio" name="horas_digital" value="Más de 5 horas"><span>Más de 5 horas</span></label>
+      </div>
+    </section>
+    <section class="card">
+      <p class="field-title">5. Al elegir cómo entretenerte, ¿qué factor influye más en tu decisión? <span class="required">*</span></p>
+      <p class="hint">Selecciona una sola opción.</p>
+      <div class="choices">
+        <label class="choice"><input type="radio" name="factor" value="Las recomendaciones de mis amigos o compañeros" required><span>Las recomendaciones de mis amigos o compañeros</span></label>
+        <label class="choice"><input type="radio" name="factor" value="Lo que es tendencia en redes sociales o algoritmos"><span>Lo que es tendencia en redes sociales o algoritmos</span></label>
+        <label class="choice"><input type="radio" name="factor" value="La necesidad de desconectarme o desestresarme rápidamente"><span>La necesidad de desconectarme o desestresarme rápidamente</span></label>
+        <label class="choice"><input type="radio" name="factor" value="El costo o si es un contenido/actividad gratuita"><span>El costo o si es un contenido/actividad gratuita</span></label>
+      </div>
+    </section>
+    <section class="card">
+      <p class="field-title">6. ¿En qué categoría realizas mayor gasto económico mensual relacionado con entretenimiento? <span class="required">*</span></p>
+      <p class="hint">Selecciona una sola opción.</p>
+      <div class="choices">
+        <label class="choice"><input type="radio" name="gasto" value="Salidas con amigos (restaurantes, bares, cine, eventos)" required><span>Salidas con amigos (restaurantes, bares, cine, eventos)</span></label>
+        <label class="choice"><input type="radio" name="gasto" value="Boletas para eventos masivos (conciertos, festivales, convenciones)"><span>Boletas para eventos masivos (conciertos, festivales, convenciones)</span></label>
+        <label class="choice"><input type="radio" name="gasto" value="Suscripciones digitales (plataformas de video, música, pases de juego)"><span>Suscripciones digitales (plataformas de video, música, pases de juego)</span></label>
+        <label class="choice"><input type="radio" name="gasto" value="Compras dentro de plataformas o juegos (monedas virtuales, membresías, skins)"><span>Compras dentro de plataformas o juegos (monedas virtuales, membresías, skins)</span></label>
+        <label class="choice"><input type="radio" name="gasto" value="Casi no invierto dinero en entretenimiento"><span>Casi no invierto dinero en entretenimiento</span></label>
+      </div>
+    </section>
+    <section class="card">
+      <p class="field-title">7. ¿Qué rol cumple el entretenimiento en tu rutina semanal universitaria? <span class="required">*</span></p>
+      <p class="hint">Selecciona una sola opción.</p>
+      <div class="choices">
+        <label class="choice"><input type="radio" name="rol" value="Indispensable: Es mi principal herramienta para despejar la mente y evitar el cansancio." required><span>Indispensable: Es mi principal herramienta para despejar la mente y evitar el cansancio.</span></label>
+        <label class="choice"><input type="radio" name="rol" value="Moderado: Le dedico tiempo solo si ya cumplí con mis deberes."><span>Moderado: Le dedico tiempo solo si ya cumplí con mis deberes.</span></label>
+        <label class="choice"><input type="radio" name="rol" value="Secundario: Consumo contenido de forma automática mientras realizo otras tareas."><span>Secundario: Consumo contenido de forma automática mientras realizo otras tareas.</span></label>
+        <label class="choice"><input type="radio" name="rol" value="Irrelevante: Priorizo casi al 100% el estudio y responsabilidades."><span>Irrelevante: Priorizo casi al 100% el estudio y responsabilidades.</span></label>
+      </div>
+    </section>
+    <section class="card">
+      <p class="field-title">8. ¿Cuál es tu contenido, serie, videojuego o artista favorito del momento y por qué te llama la atención?</p>
+      <p class="hint">Respuesta abierta (opcional).</p>
+      <textarea name="favorito" maxlength="1500" placeholder="Escribe aquí tu respuesta..."></textarea>
+    </section>
+    <section class="card">
+      <p class="field-title">9. Si pudieras cambiar un hábito de tu consumo de entretenimiento (por ejemplo, pasar menos tiempo en el celular, jugar más o salir más), ¿cuál sería y qué te lo impide?</p>
+      <p class="hint">Respuesta abierta (opcional).</p>
+      <textarea name="habito" maxlength="1500" placeholder="Escribe aquí tu respuesta..."></textarea>
+    </section>
+    <section class="card">
+      <p class="field-title">10. ¿De qué manera sientes que las tendencias actuales en redes o entretenimiento influyen en la forma en que te relacionas con tus compañeros de la universidad?</p>
+      <p class="hint">Respuesta abierta (opcional).</p>
+      <textarea name="relaciones" maxlength="1500" placeholder="Escribe aquí tu respuesta..."></textarea>
+    </section>
+    <div class="actions">
+      <button id="submitBtn" type="submit">Enviar respuestas</button>
+      <button type="button" id="resetBtn" style="background:#e8eef8;color:#1e3a8a;box-shadow:none">Borrar respuestas</button>
+    </div>
+    <div id="status" class="status" role="status" aria-live="polite"></div>
+    <p class="small" style="margin-top:16px">No ingreses contraseñas, números de tarjetas ni información sensible. Configura el destino de las respuestas antes de compartir esta página.</p>
+  </form>
+  <div class="footer">Formulario editable · Diseño azul y blanco</div>
+</main>
+<script>
+/*
+CONEXIÓN:
+- Sin configurar ENDPOINT, el formulario valida y muestra una vista previa local, pero NO envía a Excel.
+- Para guardar automáticamente en un archivo Excel local, usa el servidor Python incluido en este paquete.
+*/
+const ENDPOINT = "/api/respuestas";
+const form = document.getElementById('surveyForm');
+const statusBox = document.getElementById('status');
+const btn = document.getElementById('submitBtn');
+document.getElementById('resetBtn').addEventListener('click',()=>{form.reset();statusBox.className='status';statusBox.textContent='';});
+function showStatus(kind,msg){statusBox.className='status '+kind;statusBox.textContent=msg;}
+form.addEventListener('submit',async e=>{
+  e.preventDefault();
+  if(!form.reportValidity()){showStatus('err','Revisa los campos obligatorios y el formato del correo.');return;}
+  const data = Object.fromEntries(new FormData(form).entries());
+  data.fecha = new Date().toISOString();
+  for (const campo of ['actividad','horas_digital','factor','gasto','rol']) {
+    if (!data[campo]) { showStatus('err','Responde todas las preguntas de opción múltiple obligatorias.'); return; }
+  }
+  btn.disabled=true;btn.textContent='Enviando...';
+  try{
+    if(!ENDPOINT){
+      showStatus('ok','Validación correcta. Aún no está conectada a Excel: sigue el archivo LEEME.txt para activar el guardado automático.');
+      console.info('Vista previa de respuesta (no se ha guardado):',data);
+      return;
+    }
+    const res=await fetch(ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)});
+    const result=await res.json().catch(()=>({}));
+    if(!res.ok) throw new Error(result.error||'No se pudo guardar la respuesta.');
+    form.reset();
+    showStatus('ok','¡Gracias! Tu respuesta fue guardada correctamente.');
+  }catch(err){showStatus('err','No se pudo guardar. Comprueba que el servidor esté iniciado y vuelve a intentarlo. Detalle: '+err.message);}
+  finally{btn.disabled=false;btn.textContent='Enviar respuestas';}
+});
+</script>
+</body>
+</html>
